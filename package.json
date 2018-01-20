@@ -1,0 +1,23 @@
+{
+  "name": "ngelexcel",
+  "version": "1.0.0",
+  "description": "Convert json collection to excel by angular services",
+  "main": "dist/ngElExcel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehsanlotfi/NgELExcel.git"
+  },
+  "keywords": [
+    "excel",
+    "jsonToexcel"
+  ],
+  "author": "ehsan lotfinia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ehsanlotfi/NgELExcel/issues"
+  },
+  "homepage": "https://github.com/ehsanlotfi/NgELExcel#readme"
+}
