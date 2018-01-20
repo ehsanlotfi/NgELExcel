@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ng El Excel</title>
+    
+    <!-- Latest compiled bootstrap minified CSS  -->
+    <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified AngularJs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="../dist/ngElExcel.js"></script>
+</head>
+<body>
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <br>
+        <div class="container">
+            
+        
+                
+                <div class="panel panel-success">
+                      <div class="panel-heading">
+                            <h3 class="panel-title">Sample Data 1</h3>
+                      </div>
+                      <div class="panel-body">
+                            [{ id: 10, name: 'ehsan' }, { id: 11, name: 'moslem' }, { id: 12, name: 'iman' }, { id: 13, name: 'javad' }]
+                      </div>
+                </div>
+                <div class="panel panel-success">
+                        <div class="panel-heading">
+                              <h3 class="panel-title">Sample Data 2</h3>
+                        </div>
+                        <div class="panel-body">
+                                [{ id: 20, name: 'maryam' }, { id: 21, name: 'elham' }, { id: 22, name: 'sahar' }, { id: 23, name: 'sara' }]
+                        </div>
+                  </div>
+
+                  <div class="panel panel-info">
+                        <div class="panel-heading">
+                              <h3 class="panel-title">Example #1 :</h3>
+                              <h5> Quick conversion to Excel </h5>
+                        </div>
+                        <div class="panel-body">
+                                NgELExcel.Excel(SampleData1);
+                                <button type="button" class="btn btn-primary pull-right" ng-click="Result('Example1')" >Result</button>
+                        </div>
+                  </div>
+                  <div class="panel panel-info">
+                        <div class="panel-heading">
+                              <h3 class="panel-title">Example #2 :</h3>
+                              <h5> You can customize your Excel output by rendering function </h5>
+                        </div>
+                        <div class="panel-body">
+                                NgELExcel.Excel(SampleData1,[
+                                {
+                                    title: "rows",
+                                    name: "#rowNumber"
+                                },
+                                {
+                                    title: "Identity",
+                                    name: "id"
+                                },
+                                {
+                                    title: "UserName",
+                                    name: "name"
+                                }
+                            ]);
+                                <button type="button" class="btn btn-primary pull-right" ng-click="Result('Example2')" >Result</button>
+                        </div>
+                  </div>
+                  <div class="panel panel-info">
+                        <div class="panel-heading">
+                              <h3 class="panel-title">Example #3 :</h3>
+                              <h5> Limit the output records to the third argument of this service </h5>
+                        </div>
+                        <div class="panel-body">
+                                NgELExcel.Excel(SampleData1,null,2);
+                                <button type="button" class="btn btn-primary pull-right" ng-click="Result('Example3')" >Result</button>
+                        </div>
+                  </div>
+                  <div class="panel panel-info">
+                        <div class="panel-heading">
+                              <h3 class="panel-title">Example #4 :</h3>
+                              <h5> You can have multiple outputs in an Excel file </h5>
+                        </div>
+                        <div class="panel-body">
+                                NgELExcel.Excel([SampleData1,SampleData2]);
+                                <button type="button" class="btn btn-primary pull-right" ng-click="Result('Example4')" >Result</button>
+                        </div>
+                  </div>
+                  <div class="panel panel-info">
+                        <div class="panel-heading">
+                              <h3 class="panel-title">Example #5 :</h3>
+                              <h5> Finally, a combination of previous methods can be implemented together </h5>
+                        </div>
+                        <div class="panel-body">
+                                NgELExcel.Excel([SampleData1, SampleData2],[null,null],[2,3]);
+                                <button type="button" class="btn btn-primary pull-right" ng-click="Result('Example5')" >Result</button>
+                        </div>
+                  </div>
+            
+            
+        </div>
+        
+    </div>
+
+<script>
+    var app = angular.module("myApp", ['NgELExcel']);
+    app.controller("myCtrl", function($scope , NgELExcel) {
+
+        $scope.Result = function(num){
+            const SampleData1 =  [{ id: 10, name: 'ehsan' }, { id: 11, name: 'moslem' }, { id: 12, name: 'iman' }, { id: 13, name: 'javad' }];
+            const SampleData2 =  [{ id: 20, name: 'maryam' }, { id: 21, name: 'elham' }, { id: 22, name: 'sahar' }, { id: 23, name: 'sara' }];
+            switch(num){
+                case "Example1":
+                NgELExcel.Excel(SampleData1)
+                break;
+                case "Example2":
+                NgELExcel.Excel(SampleData1,[
+                                {
+                                    title: "rows",
+                                    name: "#rowNumber"
+                                },
+                                {
+                                    title: "Identity",
+                                    name: "id"
+                                },
+                                {
+                                    title: "UserName",
+                                    name: "name"
+                                }
+                            ]);
+                break;
+                case "Example3":
+                    NgELExcel.Excel(SampleData1,null,2)
+                break;
+                case "Example4":
+                    NgELExcel.Excel([SampleData1,SampleData2]);
+                break;
+                case "Example5":
+                    NgELExcel.Excel([SampleData1, SampleData2],[null,null],[2,3]);
+                break;
+            }
+        }
+    });
+    </script>
+    
+</body>
+</html>
